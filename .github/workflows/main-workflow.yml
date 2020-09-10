@@ -1,0 +1,24 @@
+name: Build and Run
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: build sender
+      run: g++ -Wall -Wextra --coverage -o sender sender.cpp
+
+    - name: build receiver
+      run: g++ -Wall -Wextra --coverage -o receiver receiver.cpp 
+      
+    - name: run
+      run: ./sender | ./receiver
