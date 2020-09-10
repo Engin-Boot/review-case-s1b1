@@ -87,7 +87,7 @@ int main()
     f1.readHeader();
     vector<string> comments;
     comments = f1.readRecord();
-   // cout << comments.size()<<endl;
+    cout << comments.size()<<endl;
     for (int i = 0; i < comments.size(); i++)
         cout << comments[i]<<endl;
 }
