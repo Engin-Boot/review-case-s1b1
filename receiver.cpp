@@ -32,7 +32,7 @@ void rec::CountWords(const string& s1) {
         }
     }
     rec::m[word]++;
-    unordered_map<string, int> ::iterator itr;
+  //  unordered_map<string, int> ::iterator itr;
 }
 
 void rec::createCSV() {
@@ -46,7 +46,7 @@ void rec::createCSV() {
     }
 }
 
-void removePunctuations(string& s1)
+void rec::removePunctuations(string& s1)
 {
     s1.erase(remove_if(s1.begin(), s1.end(), ispunct));
 }
@@ -55,11 +55,13 @@ void removePunctuations(string& s1)
 int main() {
     rec ob;
     string s1;
-    int count = 1;  //in case when more strings as input
-    while (count--) {
+    int count;
+    cin >> count;
+    while (count!=-1) {
         getline(cin, s1);
-        ob.removePunctuations(s1);
+      //  ob.removePunctuations(s1);
         ob.CountWords(s1);
+        count--;
     }
     ob.createCSV();
 }
