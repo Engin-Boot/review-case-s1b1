@@ -46,7 +46,7 @@ vector<string> FileReader::File::readRecords()
     {
         row.clear();
         getline(fin, line);
-        checkLines(line, row);
+        checkLine(line, row);
         //stringstream s(line);
         //cout << line<<endl;
         //cout << endl << "NOW............" << endl;
@@ -55,7 +55,7 @@ vector<string> FileReader::File::readRecords()
     //cout << "NOW RETURNING"<<endl<<comments.size();
     return comments;
 }
-void FileReader::File::checkLines(string line,vector<string> row)
+void FileReader::File::checkLine(string line,vector<string> row)
 {
     string word;
     stringstream s(line);
@@ -67,12 +67,12 @@ void FileReader::File::checkLines(string line,vector<string> row)
             row.push_back(word);
             //cout << endl << "PUSH_BACK started" << endl;
         }
-        checkForComments(line, row);
+        checkForComment(line, row);
     }
     else
         comments[comments.size() - 1] = comments[comments.size() - 1] + line;
 }
-void FileReader::File::checkForComments(string line, vector<string> row)
+void FileReader::File::checkForComment(string line, vector<string> row)
 {
     regex date("[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,4} [0-9]{1,2}:[0-9]{1,2}");
     if (row.size() == 1)
@@ -98,7 +98,7 @@ int main()
     vector<string> comments;
     comments = f1.readRecords();
     cout << comments.size()<<endl;
-    for (int i = 0; i < comments.size(); i++)
+    for (int i = 0; (unsigned) i < comments.size(); i++)
         cout << comments[i]<<endl;
     return 0;
 }
