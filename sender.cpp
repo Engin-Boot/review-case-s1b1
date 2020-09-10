@@ -39,7 +39,6 @@ vector<string> FileReader::File::readRecords()
 
     vector<string> row;
     string line;
-    int comments_index=-1;
     string dummyLine;
     getline(fin, dummyLine);
     while (fin.good())
@@ -55,7 +54,7 @@ vector<string> FileReader::File::readRecords()
     //cout << "NOW RETURNING"<<endl<<comments.size();
     return comments;
 }
-void FileReader::File::checkLine(string line,vector<string> row)
+void FileReader::File::checkLine(const string& line,vector<string> row)
 {
     string word;
     stringstream s(line);
@@ -72,7 +71,7 @@ void FileReader::File::checkLine(string line,vector<string> row)
     else
         comments[comments.size() - 1] = comments[comments.size() - 1] + line;
 }
-void FileReader::File::checkForComment(string line, vector<string> row)
+void FileReader::File::checkForComment(const string& line, vector<string> row)
 {
     regex date("[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,4} [0-9]{1,2}:[0-9]{1,2}");
     if (row.size() == 1)

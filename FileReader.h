@@ -15,7 +15,7 @@ namespace FileReader
 		int index;
 		void readHeader();
 		vector<string> readRecords();
-		void checkLine(string, vector<string>);
-		void checkForComment(string, vector<string>);
+		void checkLine(const string&, vector<string>);
+		void checkForComment(const string&, vector<string>);
 	};
 }
