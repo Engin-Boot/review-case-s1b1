@@ -30,16 +30,15 @@ void FileReader::File::readHeader()
     fin.close();
 }
 
-vector<string> FileReader::File::readRecord()
+vector<string> FileReader::File::readRecords()
 {
     ifstream fin("review-report.csv");
 
     // Make sure the file is open
     //if (!fin.is_open()) throw runtime_error("Could not open file");
 
-    vector<string> row,comments;
-    regex date("[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,4} [0-9]{1,2}:[0-9]{1,2}");
-    string line, word;
+    vector<string> row;
+    string line;
     int comments_index=-1;
     string dummyLine;
     getline(fin, dummyLine);
@@ -47,38 +46,49 @@ vector<string> FileReader::File::readRecord()
     {
         row.clear();
         getline(fin, line);
-        stringstream s(line);
+        checkLines(line, row);
+        //stringstream s(line);
         //cout << line<<endl;
-        if (line.find(',') != string::npos)
-        {
-            while (getline(s, word, ','))
-            {
-                row.push_back(word);
-                //cout << endl << "PUSH_BACK started" << endl;
-            }
-            if (row.size() == 1 )
-            {
-                //cout << "BLANK LINES..............."<<row[0]<<endl;
-                continue;
-            }
-            else if (regex_match(row[0], date))
-            {
-                comments.push_back(row[index]);
-            }
-            else
-            {
-                comments[comments.size()-1] = comments[comments.size()-1] + line;
-            }
-        }
-        else
-            comments[comments.size() - 1] = comments[comments.size() - 1] + line;
         //cout << endl << "NOW............" << endl;
         //cout << row.size();
     }
     //cout << "NOW RETURNING"<<endl<<comments.size();
     return comments;
 }
-
+void FileReader::File::checkLines(string line,vector<string> row)
+{
+    string word;
+    stringstream s(line);
+    
+    if (line.find(',') != string::npos)
+    {
+        while (getline(s, word, ','))
+        {
+            row.push_back(word);
+            //cout << endl << "PUSH_BACK started" << endl;
+        }
+        checkForComments(line, row);
+    }
+    else
+        comments[comments.size() - 1] = comments[comments.size() - 1] + line;
+}
+void FileReader::File::checkForComments(string line, vector<string> row)
+{
+    regex date("[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,4} [0-9]{1,2}:[0-9]{1,2}");
+    if (row.size() == 1)
+    {
+        //cout << "BLANK LINES..............."<<row[0]<<endl;
+        return;
+    }
+    else if (regex_match(row[0], date))
+    {
+        comments.push_back(row[index]);
+    }
+    else
+    {
+        comments[comments.size() - 1] = comments[comments.size() - 1] + line;
+    }
+}
 // ***** consumer code****
 
 int main()
@@ -86,8 +96,9 @@ int main()
     FileReader::File f1;
     f1.readHeader();
     vector<string> comments;
-    comments = f1.readRecord();
+    comments = f1.readRecords();
     cout << comments.size()<<endl;
     for (int i = 0; i < comments.size(); i++)
         cout << comments[i]<<endl;
+    return 0;
 }
