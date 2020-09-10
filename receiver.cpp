@@ -22,19 +22,20 @@ void receiver::rec::createCSV() {
 
     unordered_map<string, int> ::iterator itr;
 
-    for (itr = m.begin(); itr != m.end(); itr++) {
+    for (itr = m.begin(); itr != m.end(); ++itr) {
         fout << itr->second << "," << itr->first << "\n";
     }
 }
 
 void receiver::rec::removePunctuations(string& s1)
 {
-    s1.erase(remove_if(s1.begin(), s1.end(), ::ispunct), s1.end());
+   // static_cast<unsigned char>(s1);
+    s1.erase(remove_if(s1.begin(), s1.end(), ::iswpunct), s1.end());
 }
 
 void receiver::rec::removeNumbers(string& s1)
 {
-    s1.erase(remove_if(s1.begin(), s1.end(), ::isdigit), s1.end());
+    s1.erase(remove_if(s1.begin(), s1.end(), ::iswdigit), s1.end());
 }
 
 
@@ -43,7 +44,7 @@ int main() {
     string s1;
     int count;
     cin >> count;
-    while (count != 0) {
+    while (count != -1) {
         getline(cin, s1);
         ob.removePunctuations(s1);
         ob.removeNumbers(s1);
