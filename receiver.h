@@ -5,6 +5,7 @@
 #include<iterator>
 #include<fstream>
 #include<algorithm>
+#include<sstream>
 using namespace std;
 
 namespace receiver {
@@ -18,5 +19,7 @@ namespace receiver {
         void createCSV();
         void removePunctuations(string& s1);
         void removeNumbers(string& s1);
+        void convertToLowerCase(string& s1);
     };
+    
 }
