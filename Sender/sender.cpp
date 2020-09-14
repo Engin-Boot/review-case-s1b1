@@ -10,9 +10,9 @@ using namespace std;
 
 void FileReader::File::openFile(string filename)
 {
-    FileReader::File::fin.open(filename);
-    // Make sure the file is open
-    if (!fin.is_open()) throw runtime_error("Could not open file");
+        FileReader::File::fin.open(filename);
+        // Make sure the file is open
+        if (!fin) throw runtime_error("File does not exist");
 }
 
 void FileReader::File::readHeader()
@@ -77,5 +77,3 @@ void FileReader::File::checkForComment(const string& line, vector<string> row)
         comments[comments.size() - 1] = comments[comments.size() - 1] + line;
     }
 }
-
-
