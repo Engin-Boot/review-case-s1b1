@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -12,7 +13,9 @@ namespace FileReader
 	{
 	public:
 		vector<string> comments;
-		int index;
+		int index=0;
+		ifstream fin;
+		void openFile(string filename = "review-report.csv");
 		void readHeader();
 		vector<string> readRecords();
 		void checkLine(const string&, vector<string>);

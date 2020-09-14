@@ -8,12 +8,15 @@
 
 using namespace std;
 
+void FileReader::File::openFile(string filename)
+{
+    FileReader::File::fin.open(filename);
+    // Make sure the file is open
+    if (!fin.is_open()) throw runtime_error("Could not open file");
+}
+
 void FileReader::File::readHeader()
 {
-    fstream fin;
-
-    fin.open("review-report.csv", ios::in);
-
     int pos = 0;
     vector<string> row;
     string line, word;
@@ -26,33 +29,21 @@ void FileReader::File::readHeader()
         row.push_back(word);
         pos++;
     }
-    fin.close();
 }
 
 vector<string> FileReader::File::readRecords()
 {
-    ifstream fin("review-report.csv");
-
-    // Make sure the file is open
-    //if (!fin.is_open()) throw runtime_error("Could not open file");
-
-    vector<string> row;
+    
     string line;
-    string dummyLine;
-    getline(fin, dummyLine);
     while (fin.good())
     {
-        row.clear();
+        vector<string> row;
         getline(fin, line);
         checkLine(line, row);
-        //stringstream s(line);
-        //cout << line<<endl;
-        //cout << endl << "NOW............" << endl;
-        //cout << row.size();
     }
-    //cout << "NOW RETURNING"<<endl<<comments.size();
     return comments;
 }
+
 void FileReader::File::checkLine(const string& line,vector<string> row)
 {
     string word;
@@ -63,19 +54,18 @@ void FileReader::File::checkLine(const string& line,vector<string> row)
         while (getline(s, word, ','))
         {
             row.push_back(word);
-            //cout << endl << "PUSH_BACK started" << endl;
         }
         checkForComment(line, row);
     }
     else
         comments[comments.size() - 1] = comments[comments.size() - 1] + line;
 }
+
 void FileReader::File::checkForComment(const string& line, vector<string> row)
 {
     regex date("[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,4} [0-9]{1,2}:[0-9]{1,2}");
     if (row.size() == 1)
     {
-        //cout << "BLANK LINES..............."<<row[0]<<endl;
         return;
     }
     else if (regex_match(row[0], date))
@@ -86,17 +76,4 @@ void FileReader::File::checkForComment(const string& line, vector<string> row)
     {
         comments[comments.size() - 1] = comments[comments.size() - 1] + line;
     }
-}
-// ***** consumer code****
-
-int main()
-{
-    FileReader::File f1;
-    f1.readHeader();
-    vector<string> comments;
-    comments = f1.readRecords();
-    cout << comments.size()<<endl;
-    for (int i = 0; (unsigned) i < comments.size(); i++)
-        cout << comments[i]<<endl;
-    return 0;
 }
