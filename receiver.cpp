@@ -1,5 +1,11 @@
 #include "receiver.h"
 
+bool receiver::rec::checkValidInput() {
+    if (m.size() == 0)
+        return false;
+    return true;
+}
+
 void receiver::rec::CountWords(const string& s1) {
     string word = "";
     stringstream ss(s1);
@@ -42,16 +48,17 @@ void receiver::rec::convertToLowerCase(string& s1) {
 
 int main() {
     receiver::rec ob;
+
     string s1;
-    int count;
-    cin >> count;
-    while (count != -1) {
+    while (getline(cin,s1) {
         getline(cin, s1);
         ob.removePunctuations(s1);
         ob.removeNumbers(s1);
         ob.convertToLowerCase(s1);
         ob.CountWords(s1);
-        count--;
     }
-    ob.createCSV();
+    
+    if (ob.checkValidInput()) {
+        ob.createCSV();
+    }
 }
