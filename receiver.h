@@ -17,6 +17,7 @@ namespace receiver {
     public:
         void CountWords(const string& s1);
         void createCSV();
+        bool checkValidInput();
         void removePunctuations(string& s1);
         void removeNumbers(string& s1);
         void convertToLowerCase(string& s1);

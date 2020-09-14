@@ -77,3 +77,18 @@ void FileReader::File::checkForComment(const string& line, vector<string> row)
         comments[comments.size() - 1] = comments[comments.size() - 1] + line;
     }
 }
+<<<<<<< HEAD
+=======
+// ***** consumer code****
+
+int main()
+{
+    FileReader::File f1;
+    f1.readHeader();
+    vector<string> comments;
+    comments = f1.readRecords();
+    for (int i = 0; (unsigned) i < comments.size(); i++)
+        cout << comments[i]<<endl;
+    return 0;
+}
+>>>>>>> 7d61f2f9a76d64a43e2c1ae2ce8b842a1c2404de
