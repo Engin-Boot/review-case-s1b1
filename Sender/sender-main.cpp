@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
     }
     catch (const exception& e)
     {
-        cout << "Runtime error: " << r.what() << endl;
+        cout << "Runtime error: " << e.what() << endl;
         exit(0);
     }
     f1.readHeader();
