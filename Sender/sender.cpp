@@ -8,6 +8,13 @@
 
 using namespace std;
 
+void FileReader::File::selectFilename(int argc,char* argv[])
+{
+    if (argc == 2)
+        openFile(argv[1]);
+    else
+        openFile();
+}
 void FileReader::File::openFile(string filename)
 {
         FileReader::File::fin.open(filename);

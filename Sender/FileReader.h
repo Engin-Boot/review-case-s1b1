@@ -15,6 +15,7 @@ namespace FileReader
 		vector<string> comments;
 		int index=0;
 		ifstream fin;
+		void selectFilename(int, char* []);
 		void openFile(string filename = "review-report.csv");
 		void readHeader();
 		vector<string> readRecords();

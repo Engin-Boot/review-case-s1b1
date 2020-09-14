@@ -10,10 +10,7 @@ int main(int argc, char* argv[])
     FileReader::File f1;
     try
     {
-        if (argc == 2)
-            f1.openFile(argv[1]);
-        else
-            f1.openFile();
+        f1.selectFilename(argc,argv);
     }
     catch (runtime_error r)
     {
