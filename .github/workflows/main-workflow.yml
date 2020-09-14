@@ -28,3 +28,6 @@ jobs:
       
     - name: run
       run: ./sender | ./receiver
+      
+    - name: coverage report
+      run: gcov -r *.cpp
