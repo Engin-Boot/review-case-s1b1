@@ -24,7 +24,7 @@ jobs:
       run: g++ -Wall -Wextra --coverage -o receiver Receiver/*.cpp 
        
     - name: static analysis
-      run: cppcheck --suppress='*:SenderTest/' --enable=all --error-exitcode=1 .
+      run: cppcheck --suppress='*:SenderTest/*' --enable=all --error-exitcode=1 .
      
     - name: sender test
       run: g++ -Wall -Wextra --coverage -o senderTest SenderTest/sender-test.cpp Sender/sender.cpp
