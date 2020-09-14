@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
     {
         f1.selectFilename(argc,argv);
     }
-    catch (runtime_error r)
+    catch (const exception& e)
     {
         cout << "Runtime error: " << r.what() << endl;
         exit(0);
