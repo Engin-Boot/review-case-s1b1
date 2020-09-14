@@ -15,12 +15,13 @@ namespace receiver {
         string s1;
         unordered_map<string, int> m;
     public:
+        unsigned int count;
+        bool checkInputValidity();
         void CountWords(const string& s1);
+        void accessMap();
         void createCSV();
-        bool checkValidInput();
         void removePunctuations(string& s1);
         void removeNumbers(string& s1);
         void convertToLowerCase(string& s1);
     };
-    
 }

@@ -1,16 +1,18 @@
 #include "receiver.h"
 
-bool receiver::rec::checkValidInput() {
-    if (m.size() == 0)
-        return false;
+bool receiver::rec::checkInputValidity() {
+    if (m.size() == 0) {
+        throw std::runtime_error("No input");
+    }
     return true;
 }
 
 void receiver::rec::CountWords(const string& s1) {
     string word = "";
     stringstream ss(s1);
-    while(ss>>word)
+    while (ss >> word)
         rec::m[word]++;
+    count = m.size();
 }
 
 void receiver::rec::createCSV() {
@@ -31,7 +33,7 @@ bool invalidChar(char c)
 
 void receiver::rec::removePunctuations(string& s1)
 {
-   // static_cast<unsigned char>(s1);
+    // static_cast<unsigned char>(s1);
     s1.erase(remove_if(s1.begin(), s1.end(), ::iswpunct), s1.end());
     s1.erase(remove_if(s1.begin(), s1.end(), invalidChar), s1.end());
 }
@@ -43,21 +45,4 @@ void receiver::rec::removeNumbers(string& s1)
 
 void receiver::rec::convertToLowerCase(string& s1) {
     transform(s1.begin(), s1.end(), s1.begin(), ::tolower);
-}
-
-
-int main() {
-    receiver::rec ob;
-    string s1;
-    while (getline(cin,s1)) {
-        getline(cin, s1);
-        ob.removePunctuations(s1);
-        ob.removeNumbers(s1);
-        ob.convertToLowerCase(s1);
-        ob.CountWords(s1);
-    }
-    
-    if (ob.checkValidInput()) {
-        ob.createCSV();
-    }
 }
