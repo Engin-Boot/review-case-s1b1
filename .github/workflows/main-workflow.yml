@@ -36,4 +36,4 @@ jobs:
       run: ./sender | ./receiver
       
     - name: coverage report Sender
-      run: gcov -r sender-test.cpp
+      run: gcov -r SenderTest/sender-test.cpp
