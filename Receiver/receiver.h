@@ -18,11 +18,10 @@ namespace receiver {
         unsigned int count;
         bool checkInputValidity();
         void CountWords(const string& s1);
-        void accessMap();
         void createCSV();
         void removePunctuations(string& s1);
         void removeNumbers(string& s1);
         void convertToLowerCase(string& s1);
-        bool removeStopWords(string&);
+        void removeStopWords();
     };
 }

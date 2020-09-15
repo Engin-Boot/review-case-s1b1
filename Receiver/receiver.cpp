@@ -12,13 +12,12 @@ void receiver::rec::CountWords(const string& s1) {
     stringstream ss(s1);
     while (ss >> word)
     {
-        if(removeStopWords(word)) continue;
         rec::m[word]++;
     }
     count = m.size();
 }
 
-bool receiver::rec::removeStopWords(string& word)
+void receiver::rec::removeStopWords()
 {
     string stop[] = { "a","about","above","after","again","against","all","am","an","and","any","are","arent","as","at","be","because","been","before","being","below","between","both","but",
         "by","cant","cannot","could","couldnt","did","didnt","do","does","doesnt","doing","dont","down","during","each","few","for","from","further","had","hadnt","has","hasnt",
@@ -28,13 +27,17 @@ bool receiver::rec::removeStopWords(string& word)
         "themselves","then","there","theres","these","they","theyd","theyll","theyre","theyve","this","those","through","to","too","under","until","up","very","was","wasnt","we",
         "were","weve","were","werent","what","whats","when","whens","where","wheres","which","while","who","whos","whom","why","whys","with","wont","would",
         "wouldnt","you","youd","youll","youre","youve","your","yours","yourself","yourselves" };
+
     int length = sizeof(stop) / sizeof(stop[0]);
-    for(int i=0;i<length;i++)
-    { 
-        if (stop[i] == word)
-            return true;
+    for (int i = 0; i < length; i++)
+    {
+        auto it = m.find(stop[i]);
+        if (it != m.end()) {
+            m.erase(it);
+        }
     }
-    return false;
+    count = m.size();
+
 }
 
 void receiver::rec::createCSV() {
@@ -47,10 +50,10 @@ void receiver::rec::createCSV() {
     }
 }
 
-/*bool invalidChar(char c)
-{
-    return !(c >= 0 && c < 128);
-}*/
+// bool invalidChar(char c)
+// {
+//     return !(c >= 0 && c < 128);
+// }
 
 void receiver::rec::removePunctuations(string& s1)
 {

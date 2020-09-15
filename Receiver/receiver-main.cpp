@@ -19,5 +19,6 @@ int main() {
         cout << "Runtime error:" << e.what() << endl;
         exit(0);
     }
+    ob.removeStopWords();
     ob.createCSV();
 }
