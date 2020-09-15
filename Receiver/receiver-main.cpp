@@ -10,8 +10,14 @@ int main() {
         ob.convertToLowerCase(s1);
         ob.CountWords(s1);
     }
-
-    if (ob.checkInputValidity()) {
-        ob.createCSV();
+    try
+    {
+        ob.checkInputValidity();
     }
+    catch (const std::exception& e)
+    {
+        cout << "Runtime error:" << e.what() << endl;
+        exit(0);
+    }
+    ob.createCSV();
 }
