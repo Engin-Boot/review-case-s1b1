@@ -42,13 +42,13 @@ jobs:
       run: ./receiverTest
       
     - name: sender coverage report
-      run: gcov -r sender-main.cpp sender.cpp FileReader.h
+      run: gcov -r sender-main.cpp sender.cpp FileReader.cpp
     
     - name: sender-test coverage report
-      run: gcov -r sender-test.cpp sender.cpp FileReader.h
+      run: gcov -r sender-test.cpp sender.cpp FileReader.cpp
     
     - name: receiver coverage report
-      run: gcov -r receiver-main.cpp receiver.cpp receiver.h
+      run: gcov -r receiver-main.cpp receiver.cpp receiver.cpp
     
     - name: receiver-test coverage report
-      run: gcov -r receiver-test.cpp receiver.cpp receiver.h
+      run: gcov -r receiver-test.cpp receiver.cpp receiver.cpp
