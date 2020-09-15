@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN  
 
-#include "catch.hpp"
+#include "SenderTest/catch.hpp"
 #include "receiver.h"
 
 receiver::rec obj;
