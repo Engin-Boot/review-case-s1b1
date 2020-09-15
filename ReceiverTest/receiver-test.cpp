@@ -1,17 +1,16 @@
 #define CATCH_CONFIG_MAIN  
 
-#include "../SenderTest/catch.hpp"
-#include "../Receiver/receiver.h"
+#include "catch.hpp"
+#include "receiver.h"
 
 receiver::rec obj;
 
 TEST_CASE("If input is a string with special characters then output is a plain string")
 {
-    string input = { "expect_o , p…atronum!" };
+    string input = { "expect_o , p...atronum!" };
     obj.removePunctuations(input);
     REQUIRE(input == "expecto  patronum");
 }
-
 TEST_CASE("If input is a string with digit then output is a plain string")
 {
     string input = { "exp1ecto 5 patronum2" };
