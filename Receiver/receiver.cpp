@@ -14,7 +14,7 @@ void receiver::rec::CountWords(const string& s1) {
     {
         rec::m[word]++;
     }
-    count = m.size();
+    count = m.size();       //to hold size of map
 }
 
 void receiver::rec::removeStopWords()
@@ -36,7 +36,7 @@ void receiver::rec::removeStopWords()
             m.erase(it);
         }
     }
-    count = m.size();
+    count = m.size();           //to hold size of map
 
 }
 
@@ -50,15 +50,10 @@ void receiver::rec::createCSV() {
     }
 }
 
-// bool invalidChar(char c)
-// {
-//     return !(c >= 0 && c < 128);
-// }
-
 void receiver::rec::removePunctuations(string& s1)
 {
     s1.erase(remove_if(s1.begin(), s1.end(), ::iswpunct), s1.end());
-    //s1.erase(remove_if(s1.begin(), s1.end(), invalidChar), s1.end());
+
 }
 
 void receiver::rec::removeNumbers(string& s1)
