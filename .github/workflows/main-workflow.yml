@@ -25,9 +25,6 @@ jobs:
        
     - name: static analysis
       run: cppcheck Receiver/receiver.h Receiver/receiver.cpp Receiver/receiver-main.cpp Sender/FileReader.h Sender/sender.cpp Sender/sender-main.cpp --enable=all --language=c++ --error-exitcode=1
-        
-    - name: run pipelining
-      run: ./sender | ./receiver
     
     - name: build sender test
       run: g++ -Wall -Wextra --coverage -o senderTest SenderTest/sender-test.cpp Sender/sender.cpp
