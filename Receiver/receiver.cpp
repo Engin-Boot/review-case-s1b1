@@ -14,7 +14,7 @@ void receiver::rec::CountWords(const string& s1) {
     {
         rec::m[word]++;
     }
-    count = m.size();       //to hold size of map
+    countOfDifferentWordsInMap = m.size();       //to hold size of map
 }
 
 void receiver::rec::removeStopWords()
@@ -36,7 +36,7 @@ void receiver::rec::removeStopWords()
             m.erase(it);
         }
     }
-    count = m.size();           //to hold size of map
+    countOfDifferentWordsInMap = m.size();           //to hold size of map
 
 }
 
@@ -44,6 +44,8 @@ void receiver::rec::createCSV() {
     fstream fout;
     fout.open("map.csv", ios::out | ios::app);
 
+    fout << "Frequency of Word" << "," << "Word" << "\n";
+    
     unordered_map<string, int> ::iterator itr;
     for (itr = m.begin(); itr != m.end(); ++itr) {
         fout << itr->second << "," << itr->first << "\n";

@@ -15,7 +15,7 @@ namespace receiver {
         string s1;
         unordered_map<string, int> m;
     public:
-        unsigned int count;
+        unsigned int countOfDifferentWordsInMap;
         bool checkInputValidity();
         void CountWords(const string& s1);
         void createCSV();

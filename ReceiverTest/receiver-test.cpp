@@ -29,7 +29,7 @@ TEST_CASE("When a number of words with multiple spaces in between is given it co
 {
     string input = { "  Expecto       Patronum  " };
     obj.CountWords(input);
-    REQUIRE(obj.count == 2);
+    REQUIRE(obj.countOfDifferentWordsInMap == 2);
 }
 
 TEST_CASE("When input has has multiple occurence of a word then it counts correctly")
@@ -39,7 +39,7 @@ TEST_CASE("When input has has multiple occurence of a word then it counts correc
         receiver::rec test_object;
         string input = { "Happy Cake Day" };
         test_object.CountWords(input);
-        REQUIRE(test_object.count == 3);
+        REQUIRE(test_object.countOfDifferentWordsInMap == 3);
     }
 
     SECTION("When there is only one word in input that occurs multiple times then correct count in done")
@@ -47,7 +47,7 @@ TEST_CASE("When input has has multiple occurence of a word then it counts correc
         receiver::rec test_object;
         string input = { "Happy Happy Happy" };
         test_object.CountWords(input);
-        REQUIRE(test_object.count == 1);
+        REQUIRE(test_object.countOfDifferentWordsInMap == 1);
     }
 
     SECTION("When there is there are multiple and single occurrences of different word then correct count in done")
@@ -55,7 +55,7 @@ TEST_CASE("When input has has multiple occurence of a word then it counts correc
         receiver::rec test_object;
         string input = { "Happy Happy Happy Cake Cake Day to to to to to you" };
         test_object.CountWords(input);
-        REQUIRE(test_object.count == 5);
+        REQUIRE(test_object.countOfDifferentWordsInMap == 5);
     }
 
 }
@@ -90,5 +90,5 @@ TEST_CASE("If a string has stop words, then removeStopWords removes them")
     string input = { "Harry Potter and the goblet of fire" };
     test_object.CountWords(input);
     test_object.removeStopWords();
-    REQUIRE(test_object.count == 4);
+    REQUIRE(test_object.countOfDifferentWordsInMap == 4);
 }
