@@ -17,6 +17,7 @@ namespace receiver {
     public:
         unsigned int countOfDifferentWordsInMap;
         bool checkInputValidity();
+        bool checkIfOutputCSVNotAlreadyOpen();
         void CountWords(const string& s1);
         void createCSV();
         void removePunctuations(string& s1);

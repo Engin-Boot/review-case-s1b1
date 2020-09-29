@@ -7,6 +7,19 @@ bool receiver::rec::checkInputValidity() {
     return true;
 }
 
+
+bool receiver::rec::checkIfOutputCSVNotAlreadyOpen() {
+    fstream check;  // pre-processing -> checking if file is open in another application
+    check.open("map.csv");
+    if (check.fail())
+    {
+        if (remove("map.csv") != 0)
+            throw std::runtime_error("map.csv' File is open in another application! Please close before restarting this program\n");
+    }
+    check.close();
+    return true;
+}
+
 void receiver::rec::CountWords(const string& s1) {
     string word = "";
     stringstream ss(s1);
@@ -41,14 +54,6 @@ void receiver::rec::removeStopWords()
 }
 
 void receiver::rec::createCSV() {
-    fstream check;  // pre-processing -> checking if file is open in another application
-    check.open("map.csv");
-    if (check.fail())
-    {
-        if (remove("map.csv") != 0)
-            cout<< endl <<"'map.csv' File is open in another application! Please close before restarting this program\n" << endl;
-    }
-    check.close();
     fstream fout;
     fout.open("map.csv", ios::out);
 

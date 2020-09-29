@@ -92,3 +92,9 @@ TEST_CASE("If a string has stop words, then removeStopWords removes them")
     test_object.removeStopWords();
     REQUIRE(test_object.countOfDifferentWordsInMap == 4);
 }
+
+TEST_CASE("If map.csv is not open in any other application")
+{
+    receiver::rec test_object;
+    REQUIRE(test_object.checkIfOutputCSVNotAlreadyOpen() == true);
+}
