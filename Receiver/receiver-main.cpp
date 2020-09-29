@@ -4,6 +4,8 @@ int main() {
     receiver::rec ob;
     string s1;
     while (getline(cin, s1)) {
+        //if (s1 == "exit")
+          //  break;
         ob.removePunctuations(s1);
         ob.removeNumbers(s1);
         ob.convertToLowerCase(s1);

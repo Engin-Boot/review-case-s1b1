@@ -41,15 +41,23 @@ void receiver::rec::removeStopWords()
 }
 
 void receiver::rec::createCSV() {
+    fstream check;  // pre-processing -> checking if file is open in another application
+    check.open("map.csv");
+    if (check.fail())
+    {
+        if (remove("map.csv") != 0)
+            cout<< endl <<"'map.csv' File is open in another application! Please close before restarting this program\n" << endl;
+    }
+    check.close();
     fstream fout;
-    fout.open("map.csv", ios::out | ios::app);
+    fout.open("map.csv", ios::out);
 
     fout << "Frequency of Word" << "," << "Word" << "\n";
-    
+
     unordered_map<string, int> ::iterator itr;
     for (itr = m.begin(); itr != m.end(); ++itr) {
         fout << itr->second << "," << itr->first << "\n";
-    }
+    }        
 }
 
 void receiver::rec::removePunctuations(string& s1)
